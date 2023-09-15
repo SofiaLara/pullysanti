@@ -6,6 +6,7 @@
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+  --bg-color: #f0eee9;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -24,4 +25,57 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+}
+
+/* my styles */
+/* TODO: add varibales to tailwaind instead of css file */
+
+hr {
+  border-color: black;
+  width: 60%;
+  margin: 0 auto;
+}
+
+h1 {
+  color: black;
+  font-size: 32px;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+.fecha {
+  color: black;
+  font-size: 20px;
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  text-align: center;
+}
+
+.bg-color {
+  background-color: var(--bg-color);
+}
+
+.intro-line {
+  border: 1px solid black;
+  height: 100%;
+  position: absolute;
+  top: 45px;
+  left: 75px;
+}
+
+/* countdown */
+.time-wrapper {
+  text-align: center;
+}
+
+/* donde y cuando */
+.donde-cuando {
+  text-align: center;
+}
+
+/* dress code */
+.dress {
+  text-align: center;
 }
