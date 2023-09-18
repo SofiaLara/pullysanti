@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { GoogleSpreadsheet } from 'google-spreadsheet';
 import { JWT } from 'google-auth-library'
 import dynamic from 'next/dynamic'
+import Image from 'next/image'
 import Donde from './components/Donde';
 import Hero from './components/Hero';
 
@@ -158,6 +159,7 @@ const ContactForm = () => {
       </div>
       <div className='flex flex-col justify-center item-center py-10' id="section-countdown">
         <Countdown/>
+        <Image alt="flower image" src="./flower.png" style={{ zIndex: 0 }} unoptimized width='100' height='70' className='mt-0 mb-0 mr-auto ml-auto py-2'/>
       </div>
       <hr/>
       <div className='flex flex-col justify-center item-center p-10' id="section-donde">
@@ -167,7 +169,7 @@ const ContactForm = () => {
       <hr/>
       <div className="flex flex-col justify-center items-center" id='section-rsvp'>
           <form
-            className="space-y-3 w-full max-w-lg mx-auto p-5 relative pt-10"
+            className="flex flex-col space-y-3 w-4/5 mx-auto p-5 relative pt-10"
             onSubmit={submitForm}
           >
             {alert && (
@@ -324,7 +326,7 @@ const ContactForm = () => {
               </label></>
             )}
             <button
-              className="bg-green-200 px-3 py-1 font-semibold shadow-md rounded-md w-40 border-2 border-green-400 disabled:cursor-not-allowed"
+              className="bg-green-200 self-center px-3 py-1 font-semibold shadow-md rounded-md w-40 border-2 border-green-400 disabled:cursor-not-allowed"
               type="submit"
               disabled={loading || success}
             >
