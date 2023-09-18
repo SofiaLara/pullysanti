@@ -154,7 +154,7 @@ const ContactForm = () => {
       <div className='flex justify-center items-center min-h-screen relative' id='section-intro'>
         <Hero />
       </div>
-      <div className='flex flex-col justify-center item-center py-10' id="section-countdown">
+      <div className='flex flex-col justify-center item-center py-10 h-80' id="section-countdown">
         <Countdown />
         <Image alt="flower image" src="./flower.png" style={{ zIndex: 0 }} unoptimized width='100' height='70' className='mt-0 mb-0 mr-auto ml-auto py-2' />
       </div>
