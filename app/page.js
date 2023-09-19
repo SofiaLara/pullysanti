@@ -6,6 +6,8 @@ import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import Donde from './components/Donde';
 import Hero from './components/Hero';
+import Dresscode from './components/Dresscode';
+import Regalo from './components/Regalo';
 
 // Config variables
 const NEXT_PUBLIC_SPREADSHEET_ID = "1AE9RRaedofgzn6ycw2mMrkZSDqe49z_LqIbGzkyvjuE"
@@ -56,11 +58,6 @@ const ContactForm = () => {
   const doc = new GoogleSpreadsheet(SPREADSHEET_ID, serviceAccountAuth);
 
   const appendSpreadsheet = async (row) => {
-    // setLoading(true);
-    // await doc.useServiceAccountAuth({
-    //       client_email: GOOGLE_CLIENT_EMAIL,
-    //       private_key: GOOGLE_SERVICE_PRIVATE_KEY.replace(/\\n/g, '\n'),
-    // });
     await doc.loadInfo();
     //Write data in the sheet 
     const sheet = doc.sheetsById[SHEET_ID];
@@ -68,37 +65,6 @@ const ContactForm = () => {
     console.log(row, 'here')
     setLoading(false)
     setSuccess(true)
-
-    // return new Promise( async function(resolve,reject){
-    //   try {
-    //     var jsonObj = {}
-    //     console.log(doc, 'docc')
-    //     doc.useServiceAccountAuth({
-    //       client_email: GOOGLE_CLIENT_EMAIL,
-    //       private_key: GOOGLE_SERVICE_PRIVATE_KEY.replace(/\\n/g, '\n'),
-    //     });
-    //     // loads document properties and worksheets
-    //     await doc.loadInfo();
-    //     console.log(jsonObj, 'json');  
-    //     resolve(jsonObj);
-  
-    //     const sheet = doc.sheetsById[SHEET_ID];
-    //     await sheet.addRow(row);
-    //     setLoading(false);
-    //     setAlert(true);
-    //     setForm({
-    //       name: '',
-    //       email: '',
-    //       topic: '',
-    //       description: '',
-    //     });
-    //   } catch (e) {
-    //     console.error('Error: ', e);
-    //     setLoading(false);
-    //     reject();
-    //   }
-    // }); // end of promise
-
   };
 
   const submitForm = (e) => {
@@ -121,7 +87,6 @@ const ContactForm = () => {
         Date: new Date(),
       };
       appendSpreadsheet(newRow);
-      //accessSpreadsheet()
     }
   };
 
@@ -147,227 +112,235 @@ const ContactForm = () => {
     setPlusOne(e.target.value)
   }
 
-  console.log(asist,'asist')
-
   return (
     <div className='bg-color'>
-      <div className='flex justify-center items-center min-h-screen relative' id='section-intro'>
-        <Hero />
-      </div>
-      <div className='flex flex-col justify-center item-center py-10 h-80' id="section-countdown">
-        <Countdown />
-        <Image alt="flower image" src="./flower.png" style={{ zIndex: 0 }} unoptimized width='100' height='70' className='mt-0 mb-0 mr-auto ml-auto py-2' />
-      </div>
-      <hr />
-      <div className='flex flex-col justify-center item-center p-10' id="section-donde">
-        <h2 className='text-2xl self-center py-3'>Donde & Cuando?</h2>
-        <Donde />
-      </div>
-      <hr />
-      <div className="flex flex-col justify-center items-center" id='section-rsvp'>
-        <form
-          className="flex flex-col space-y-3 w-4/5 mx-auto p-5 relative pt-10"
-          onSubmit={submitForm}
-        >
-          {success && (
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 bg-green-100 border border-green-400 text-green-700 px-4 py-2 rounded text-center">
-              <strong className="font-bold mr-1">Success!</strong>
-            </div>
-          )}
-          <h2 className='text-2xl self-center py-3'>RSVP</h2>
-          <label className="block">
-            <span className="block text-gray-700 font-semibold">Nombre y Apellido</span>
-          </label>
-          <input
-            name="name"
-            type="text"
-            className="form-input form-field-contact"
-            onChange={handleChange}
-            value={form.name} 
-            required/>
+        <div className='flex justify-center items-center min-h-screen relative' id='section-intro'>
+          <Hero />
+        </div>
+        <div className='flex flex-col justify-center item-center py-10 h-80' id="section-countdown">
+          <Countdown />
+          <Image alt="flower image" src="./flower.png" style={{ zIndex: 0 }} unoptimized width='100' height='70' className='mt-0 mb-0 mr-auto ml-auto py-2 brightness-[0.3]' />
+        </div>
+        <hr />
+        <div className='flex flex-col justify-center item-center p-5 md:p-10' id="section-donde">
+          <Donde />
+        </div>
+        <hr />
+        <div className="flex flex-col justify-center items-center rsvp" id='section-rsvp'>
+          <h2 className='text-2xl md:text-3xl self-center py-3 px-3 pt-10 font-semibold text-center	'>Répondez s’il vous plaît</h2>
+          <p className='text-1xl md:text-2xl self-center p-3 pb-5 text-center'>Esperamos que seas parte de esta gran celebración. ¡Confirmanos tu asistencia!</p>
+          <form
+            className="flex flex-col space-y-3 w-4/5 mx-auto p-5 mb-10 relative"
+            onSubmit={submitForm}
+          >
+            <label className="block">
+              <span className="block font-semibold">Nombre y Apellido</span>
+            </label>
+            <input
+              name="name"
+              type="text"
+              className="form-input form-field-contact"
+              onChange={handleChange}
+              value={form.name} 
+              required/>
 
-          <div className="block">
-            <span className="block text-gray-700 font-semibold">Confirmas asistencia?</span>
-            <input
-              name="asistencia"
-              id='no'
-              type="radio"
-              className="mx-1 accent-pink-500"
-              onChange={(e) => {
-                handleChange(e),
-                  handleAsist(e);
-              } }
-              value={false}
-              required />
-              <label htmlFor='no'> No</label>
-            <br/>
-            <input
-              name="asistencia"
-              id='si'
-              type="radio"
-              className="mx-1 accent-green-500"
-              onChange={(e) => {
-                handleChange(e),
-                  handleAsist(e);
-              } }
-              value={true}
-              required />
-              <label htmlFor='si'> Si !</label>
-          </div>
-          {asist === 'true' && (
-            <><div>
-              <span className="block text-gray-700 font-semibold"> Tenes alguna restriccion alimentaria? </span>
+            <div className="block">
+              <span className="block font-semibold">Confirmas asistencia?</span>
               <input
-                name="restriccion"
+                name="asistencia"
+                id='no'
                 type="radio"
-                className="mx-1 accent-pink-500"
-                onChange={handleChange}
-                value={'No'} />
-                <label> No </label>
+                className="mx-1 accent-pink-800"
+                onChange={(e) => {
+                  handleChange(e),
+                    handleAsist(e);
+                } }
+                value={false}
+                required />
+                <label htmlFor='no'> No podré asistir</label>
               <br/>
               <input
-                name="restriccion"
+                name="asistencia"
+                id='si'
                 type="radio"
                 className="mx-1 accent-green-500"
-                onChange={handleChange}
-                value={'Vegeta'} />
-                <label> Vegetariano </label>
-              <br/>
-              <input
-                name="restriccion"
-                type="radio"
-                className="mx-1 accent-green-500"
-                onChange={handleChange}
-                value={'Celiaco'} />
-                <label> Celiaco </label>
+                onChange={(e) => {
+                  handleChange(e),
+                    handleAsist(e);
+                } }
+                value={true}
+                required />
+                <label htmlFor='si'> Confirmo asistencia</label>
             </div>
-            <div>
-                <span className="block text-gray-700 font-semibold">Venis acompañado?</span>
-                
+            {asist === 'true' && (
+              <><div>
+                <span className="block font-semibold"> Tenés alguna restricción alimentaria? </span>
                 <input
-                  name="plusone"
-                  type="radio"
-                  className="mx-1 accent-pink-500"
-                  onChange={(e) => {
-                    handleChange(e),
-                      handlePlusOne(e);
-                  } }
-                  value={false} />
-                  <label> No </label>
-                  <br/>
-                <input
-                  name="plusone"
+                  name="restriccion"
                   type="radio"
                   className="mx-1 accent-green-500"
-                  onChange={(e) => {
-                    handleChange(e),
-                      handlePlusOne(e);
-                  } }
-                  value={true} />
-                   <label> Si</label>
+                  onChange={handleChange}
+                  value={'No'} 
+                  required/>
+                  <label> Puedo comer de todo </label>
+                <br/>
+                <input
+                  name="restriccion"
+                  type="radio"
+                  className="mx-1 accent-green-500"
+                  onChange={handleChange}
+                  value={'Vegeta'} 
+                  required/>
+                  <label> Vegetariano </label>
+                <br/>
+                <input
+                  name="restriccion"
+                  type="radio"
+                  className="mx-1 accent-green-500"
+                  onChange={handleChange}
+                  value={'Celiaco'} 
+                  required/>
+                  <label> Celíaco </label>
               </div>
-                {plusone === 'true' && (
-                  <>
-                  <div>
-                  <label className="block">
-                    <span className="block text-gray-700 font-semibold">Nombre y apellido del acompañante</span>
-                  </label>
-                    <input
-                      name="nameplusone"
-                      type="text"
-                      className="form-input form-field-contact"
-                      onChange={handleChange}
-                      value={form.nameplusone} />
-                   </div>   
-                   <div>
+              <div>
+                  <span className="block font-semibold">Venis acompañado?</span>
+                  <input
+                    name="plusone"
+                    type="radio"
+                    className="mx-1 accent-pink-500"
+                    onChange={(e) => {
+                      handleChange(e),
+                        handlePlusOne(e);
+                    } }
+                    value={false} 
+                    required/>
+                    <label> No </label>
+                    <br/>
+                  <input
+                    name="plusone"
+                    type="radio"
+                    className="mx-1 accent-green-500"
+                    onChange={(e) => {
+                      handleChange(e),
+                        handlePlusOne(e);
+                    } }
+                    value={true} 
+                    required/>
+                    <label> Si</label>
+                </div>
+                  {plusone === 'true' && (
+                    <>
+                    <div>
                     <label className="block">
-                      <span className="block text-gray-700 font-semibold">Alguna restriccion alimentaria para tu acompañante?</span>
+                      <span className="block font-semibold">Nombre y apellido del acompañante</span>
+                    </label>
+                      <input
+                        name="nameplusone"
+                        type="text"
+                        className="form-input form-field-contact"
+                        onChange={handleChange}
+                        value={form.nameplusone} 
+                        required/>
+                    </div>   
+                    <div>
+                      <label className="block">
+                        <span className="block font-semibold">Alguna restricción alimentaria para tu acompañante?</span>
+                      </label>
+                      <input
+                        name="restriccionplusone"
+                        type="radio"
+                        className="mx-1 accent-green-500"
+                        onChange={handleChange}
+                        value={'No'} 
+                        required/>
+                        <label> Puede comer de todo </label>
+                        <br/>
+                      <input
+                        name="restriccionplusone"
+                        type="radio"
+                        className="mx-1 accent-green-500"
+                        onChange={handleChange}
+                        value={'Vegeta'} 
+                        required/>
+                        <label> Vegetariano </label>
+                        <br/>
+                      <input
+                        name="restriccionplusone"
+                        type="radio"
+                        className="mx-1 accent-green-500"
+                        onChange={handleChange}
+                        value={'Celiaco'}
+                        required />
+                        <label> Celíaco </label>
+                    </div>
+                    </>
+                  )}
+                  <div>
+                    <label className="block">
+                      <span className="block font-semibold">Necesitas transporte de bus?</span>
                     </label>
                     <input
-                      name="restriccionplusone"
+                      name="bus"
                       type="radio"
                       className="mx-1 accent-pink-500"
                       onChange={handleChange}
-                      value={'No'} />
-                      <label> No </label>
+                      value={'No gracias'}
+                      required />
+                      <label> No</label>
                       <br/>
-                    <input
-                      name="restriccionplusone"
+                      <input
+                      name="bus"
                       type="radio"
                       className="mx-1 accent-green-500"
                       onChange={handleChange}
-                      value={'Vegeta'} />
-                      <label> Vegetariano </label>
-                      <br/>
-                    <input
-                      name="restriccionplusone"
-                      type="radio"
-                      className="mx-1 accent-green-500"
-                      onChange={handleChange}
-                      value={'Celiaco'} />
-                      <label> Celiaco </label>
-                  </div>
-                  </>
-                )}
-                <div>
+                      value={'Si por favor'}
+                      required />
+                      <label> Si </label>
+                </div>
                   <label className="block">
-                    <span className="block text-gray-700 font-semibold">Necesitas transporte de bus?</span>
-                  </label>
-                  <input
-                    name="bus"
-                    type="radio"
-                    className="mx-1 accent-pink-500"
-                    onChange={handleChange}
-                    value={'No gracias'} />
-                    <label> No</label>
-                    <br/>
-                    <input
-                    name="bus"
-                    type="radio"
-                    className="mx-1 accent-green-500"
-                    onChange={handleChange}
-                    value={'Si por favor'} />
-                    <label> Si </label>
-              </div>
-                <label className="block">
-                <span className="block text-gray-700 font-semibold">Mensaje</span>
-              </label><textarea
-                name="mensaje"
-                className="form-textarea form-field-contact resize-none"
-                rows="3"
-                placeholder="Dejanos tu mensaje!"
-                onChange={handleChange}
-                value={form.mensaje} /></>
-        )}
-        <button
-          className="bg-green-300 self-center px-3 py-1 font-semibold shadow-md rounded-md w-40 border-2 border-green-400 disabled:cursor-not-allowed"
-          type="submit"
-          disabled={loading || success}
-        >
-          {loading ? (
-            <div className="flex justify-center items-center gap-2">
-              <div className="animate-spin">
-              </div>
-              <p>Sending</p>
-            </div>
-          ) : (
-            <div className="flex justify-center items-center gap-2">
-              <p>{success ? 'Gracias!' : 'Mandar'}</p>
-            </div>
+                  <span className="block font-semibold">Te gustaría decirles algo a los novios?</span>
+                </label><textarea
+                  name="mensaje"
+                  className="form-textarea form-field-contact resize-none"
+                  rows="3"
+                  placeholder="Dejanos un mensaje :)"
+                  onChange={handleChange}
+                  value={form.mensaje} /></>
           )}
-        </button>
-      </form>
-    </div>
-    <hr />
-    <div className='flex flex-col justify-center item-center p-10' id="section-dress">
-        <h2 className='text-2xl self-center py-3'>Dress Code</h2>
-        <p>Formal</p>
-      </div>
-      <hr />
-      <div className='flex flex-col justify-center item-center p-10' id="section-contribucion">
-        <h2 className='text-2xl self-center py-3'>Luna de Miel</h2>
-        <p>Contribucion pop up</p>
-      </div>
+          <button
+            className="bg-cyan-700 text-white self-center px-3 py-1 shadow-md w-40 disabled:cursor-not-allowed disabled:bg-slate-500"
+            type="submit"
+            disabled={loading || success}
+          >
+            {loading ? (
+              <div className="flex justify-center items-center gap-2">
+                <div className="animate-spin">
+                </div>
+                <p>Enviando...</p>
+              </div>
+            ) : (
+              <div className="flex justify-center items-center gap-2">
+                <p>{success ? 'Gracias!' : 'Enviar'}</p>
+              </div>
+            )}
+          </button>
+          {success && (
+              <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-2 rounded text-center">
+                <strong className="font-bold mr-1">Tu respuesta fue enviada con exito</strong>
+              </div>
+            )}
+          </form>
+        </div>
+        <div className='flex flex-col justify-center item-center p-10 bg-pink-900 text-white' id="section-dress">
+          <Dresscode />
+        </div>
+        <div className='flex flex-col justify-center item-center p-10' id="section-contribucion">
+          <Regalo />
+          <Image alt="flower image" src="./florecitas.jpg" style={{ zIndex: 0 }} unoptimized width='250' height='100' className='mt-0 mb-0 mr-auto ml-auto py-2' />
+        </div>
+        <div className='flex flex-col justify-center item-center p-10 bg-pink-900 text-white' id="section-final">
+          <h2 className='text-1xl md:text-2xl self-center py-3 text-center'>¡Gracias por acompañarnos en este momento tan importante!</h2>
+        </div>
     </div>
   );
 };

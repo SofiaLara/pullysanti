@@ -29,12 +29,12 @@ const Countdown = () => {
   };
 
   const renderTime = (dimension, time) => {
-    if ((time === 0 && dimension === 'segundos') && (time === 0 && dimension === 'dias')) {
+    if ((time === 0 && dimension === 'secs') && (time === 0 && dimension === 'dias')) {
       setTimeUp(true)
     }
 
     return (
-      <div className="time-wrapper text-xs font-sans">
+      <div className="time-wrapper text-s font-sans">
         <div className="time">{time}</div>
         <div>{dimension}</div>
       </div>
@@ -43,11 +43,12 @@ const Countdown = () => {
 
   return(
     !timeUp ? (<>
-    <h3 className='text-2xl self-center py-3'>Faltan</h3>
+    <h2 className='text-2xl md:text-3xl self-center py-3 font-semibold'>Nos casamos!</h2>
+    <p className='text-1xl md:text-2xl self-center py-3'>Faltan</p>
         <div className='flex justify-center item-center'>
             <CountdownCircleTimer
             {...timerProps}
-            colors="#831843"
+            colors="#143022"
             duration={daysDuration}
             initialRemainingTime={remainingTime}
             >
@@ -59,7 +60,7 @@ const Countdown = () => {
             </CountdownCircleTimer>
             <CountdownCircleTimer
             {...timerProps}
-            colors="#9d174d"
+            colors="#35624B"
             duration={daySeconds}
             initialRemainingTime={remainingTime % daySeconds}
             onComplete={(totalElapsedTime) => ({
@@ -74,7 +75,7 @@ const Countdown = () => {
             </CountdownCircleTimer>
             <CountdownCircleTimer
             {...timerProps}
-            colors="#be185d"
+            colors="#3E6F5A"
             duration={hourSeconds}
             initialRemainingTime={remainingTime % hourSeconds}
             onComplete={(totalElapsedTime) => ({
@@ -83,13 +84,13 @@ const Countdown = () => {
             >
             {({ elapsedTime, color }) => (
                 <div style={{ color }}>
-                {renderTime("minutos", getTimeMinutes(hourSeconds - elapsedTime))}
+                {renderTime("mins", getTimeMinutes(hourSeconds - elapsedTime))}
                 </div>
             )}
             </CountdownCircleTimer>
             <CountdownCircleTimer
             {...timerProps}
-            colors="#db2777"
+            colors="#87AB9D"
             duration={minuteSeconds}
             initialRemainingTime={remainingTime % minuteSeconds}
             onComplete={(totalElapsedTime) => ({
@@ -98,13 +99,13 @@ const Countdown = () => {
             >
             {({ elapsedTime, color }) => (
                 <div style={{ color }}>
-                {renderTime("segundos", getTimeSeconds(elapsedTime))}
+                {renderTime("secs", getTimeSeconds(elapsedTime))}
                 </div>
             )}
             </CountdownCircleTimer>
         </div>
     <h3 className='text-1xl text-center py-3'></h3></>): (
-    <h3 className='text-3xl text-center py-3'>Llegó el dia!</h3>
+    <h3 className='text-3xl text-center py-3 font-semibold'>Llegó el dia!</h3>
   )
   )
   }
