@@ -48,7 +48,7 @@ const Countdown = () => {
         <div className='flex justify-center item-center'>
             <CountdownCircleTimer
             {...timerProps}
-            colors="#143022"
+            colors="#35624B"
             duration={daysDuration}
             initialRemainingTime={remainingTime}
             >
@@ -60,7 +60,7 @@ const Countdown = () => {
             </CountdownCircleTimer>
             <CountdownCircleTimer
             {...timerProps}
-            colors="#35624B"
+            colors="#3E6F5A"
             duration={daySeconds}
             initialRemainingTime={remainingTime % daySeconds}
             onComplete={(totalElapsedTime) => ({
@@ -75,7 +75,7 @@ const Countdown = () => {
             </CountdownCircleTimer>
             <CountdownCircleTimer
             {...timerProps}
-            colors="#3E6F5A"
+            colors="#4F8B72"
             duration={hourSeconds}
             initialRemainingTime={remainingTime % hourSeconds}
             onComplete={(totalElapsedTime) => ({

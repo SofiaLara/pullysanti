@@ -19,7 +19,7 @@ const [showMore, setShowMore] = useState(false);
                     <li>CBU: 0720793088000035796318</li>
                     <li>Alias: paulapeyret</li>
                 </ul>
-                <p>Gracias!</p>
+                <p className='py-3 font-semibold'>Gracias!</p>
             </div>}
         </>
     )

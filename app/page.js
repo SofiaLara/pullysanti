@@ -119,7 +119,7 @@ const ContactForm = () => {
         </div>
         <div className='flex flex-col justify-center item-center py-10 h-80' id="section-countdown">
           <Countdown />
-          <Image alt="flower image" src="./flower.png" style={{ zIndex: 0 }} unoptimized width='100' height='70' className='mt-0 mb-0 mr-auto ml-auto py-2 brightness-[0.3]' />
+          <Image alt="flower image" src="./countdown.png" style={{ zIndex: 0 }} unoptimized width='100' height='70' className='mt-0 mb-0 mr-auto ml-auto py-2' />
         </div>
         <hr />
         <div className='flex flex-col justify-center item-center p-5 md:p-10' id="section-donde">
@@ -148,19 +148,6 @@ const ContactForm = () => {
               <span className="block font-semibold">Confirmas asistencia?</span>
               <input
                 name="asistencia"
-                id='no'
-                type="radio"
-                className="mx-1 accent-pink-800"
-                onChange={(e) => {
-                  handleChange(e),
-                    handleAsist(e);
-                } }
-                value={false}
-                required />
-                <label htmlFor='no'> No podré asistir</label>
-              <br/>
-              <input
-                name="asistencia"
                 id='si'
                 type="radio"
                 className="mx-1 accent-green-500"
@@ -171,6 +158,19 @@ const ContactForm = () => {
                 value={true}
                 required />
                 <label htmlFor='si'> Confirmo asistencia</label>
+                <br/>
+              <input
+                name="asistencia"
+                id='no'
+                type="radio"
+                className="mx-1 accent-pink-800"
+                onChange={(e) => {
+                  handleChange(e),
+                    handleAsist(e);
+                } }
+                value={false}
+                required />
+                <label htmlFor='no'> No podré asistir</label>
             </div>
             {asist === 'true' && (
               <><div>
@@ -207,18 +207,6 @@ const ContactForm = () => {
                   <input
                     name="plusone"
                     type="radio"
-                    className="mx-1 accent-pink-500"
-                    onChange={(e) => {
-                      handleChange(e),
-                        handlePlusOne(e);
-                    } }
-                    value={false} 
-                    required/>
-                    <label> No </label>
-                    <br/>
-                  <input
-                    name="plusone"
-                    type="radio"
                     className="mx-1 accent-green-500"
                     onChange={(e) => {
                       handleChange(e),
@@ -227,6 +215,18 @@ const ContactForm = () => {
                     value={true} 
                     required/>
                     <label> Si</label>
+                    <br/>
+                  <input
+                    name="plusone"
+                    type="radio"
+                    className="mx-1 accent-pink-500"
+                    onChange={(e) => {
+                      handleChange(e),
+                        handlePlusOne(e);
+                    } }
+                    value={false} 
+                    required/>
+                    <label> No </label>
                 </div>
                   {plusone === 'true' && (
                     <>
@@ -282,20 +282,20 @@ const ContactForm = () => {
                     <input
                       name="bus"
                       type="radio"
-                      className="mx-1 accent-pink-500"
-                      onChange={handleChange}
-                      value={'No gracias'}
-                      required />
-                      <label> No</label>
-                      <br/>
-                      <input
-                      name="bus"
-                      type="radio"
                       className="mx-1 accent-green-500"
                       onChange={handleChange}
                       value={'Si por favor'}
                       required />
                       <label> Si </label>
+                      <br/>
+                    <input
+                      name="bus"
+                      type="radio"
+                      className="mx-1 accent-pink-500"
+                      onChange={handleChange}
+                      value={'No gracias'}
+                      required />
+                      <label> No</label>
                 </div>
                   <label className="block">
                   <span className="block font-semibold">Te gustaría decirles algo a los novios?</span>
@@ -308,7 +308,7 @@ const ContactForm = () => {
                   value={form.mensaje} /></>
           )}
           <button
-            className="bg-cyan-700 text-white self-center px-3 py-1 shadow-md w-40 disabled:cursor-not-allowed disabled:bg-slate-500"
+            className="bg-pink-900 text-white self-center px-3 py-1 shadow-md w-40 disabled:cursor-not-allowed disabled:bg-slate-500"
             type="submit"
             disabled={loading || success}
           >
@@ -331,14 +331,14 @@ const ContactForm = () => {
             )}
           </form>
         </div>
-        <div className='flex flex-col justify-center item-center p-10 bg-pink-900 text-white' id="section-dress">
+        <div className='flex flex-col justify-center item-center bg-[#3e6f5a] text-white' id="section-dress">
           <Dresscode />
         </div>
-        <div className='flex flex-col justify-center item-center p-10' id="section-contribucion">
+        <div className='flex flex-col justify-center item-center px-10 pt-10' id="section-contribucion">
           <Regalo />
-          <Image alt="flower image" src="./florecitas.jpg" style={{ zIndex: 0 }} unoptimized width='250' height='100' className='mt-0 mb-0 mr-auto ml-auto py-2' />
+          <Image alt="flower image" src="./florecitas.jpg" style={{ zIndex: 0 }} unoptimized width='250' height='100' className='mt-0 mb-0 mr-auto ml-auto' />
         </div>
-        <div className='flex flex-col justify-center item-center p-10 bg-pink-900 text-white' id="section-final">
+        <div className='flex flex-col justify-center item-center bg-[#3e6f5a] text-white' id="section-final">
           <h2 className='text-1xl md:text-2xl self-center py-3 text-center'>¡Gracias por acompañarnos en este momento tan importante!</h2>
         </div>
     </div>
