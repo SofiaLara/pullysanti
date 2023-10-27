@@ -16,7 +16,7 @@ const Donde = () => {
                     <Image alt="fiesta image" src="./fiesta3.png" style={{ zIndex: 0 }} unoptimized width='70' height='70' className='mt-0 mb-0 mr-auto ml-auto py-4 h-24' />
                     <p className='text-1xl md:text-2xl pt-5'>Fiesta</p>
                     <p className='md:h-20'>Después de la ceremonia los esperamos a celebrar con nosotros en La Aguada Polo, en la RP192, KM 10.5, Open Door</p>
-                    <a className='inline-block w-40 rounded-sm bg-[#3e6f5a] text-white px-5 py-1 m-3.5' href="https://maps.app.goo.gl/Ehstu6sJ3TEAagDcA" target="_blank" rel="noopener noreferrer">
+                    <a className='inline-block w-40 rounded-sm bg-[#3e6f5a] text-white px-5 py-1 m-3.5' href="https://maps.app.goo.gl/odQ7mo5yEjGwfVmp6" target="_blank" rel="noopener noreferrer">
                         Ver mapa
                     </a>
                 </div>
